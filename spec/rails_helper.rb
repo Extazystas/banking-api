@@ -36,7 +36,8 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.include Savon::SpecHelper
+  config.include NbrbHelpers, type: :api
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.include ControllerHelpers, type: :request
@@ -95,3 +96,7 @@ RSpec::Matchers.define_negated_matcher(:not_change, :change)
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
 Faker::Config.locale = :en
+
+def fixture(fixture_path)
+  File.read("spec/fixtures/#{fixture_path}")
+end
