@@ -115,6 +115,7 @@ GEM
     parser (2.7.2.0)
       ast (~> 2.4.1)
     pg (1.2.3)
+    progressbar (1.10.1)
     public_suffix (4.0.6)
     puma (4.3.6)
       nio4r (~> 2.0)
@@ -234,6 +235,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
+  progressbar
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
   rspec-rails (~> 4.0.0)
