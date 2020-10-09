@@ -35,6 +35,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.include ActiveSupport::Testing::TimeHelpers
   config.include FactoryBot::Syntax::Methods
   config.include Savon::SpecHelper
   config.include NbrbHelpers, type: :api
