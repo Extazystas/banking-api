@@ -32,6 +32,9 @@ gem 'progressbar'
 # SOAP client for banking API
 gem 'savon'
 
+# Authentication
+gem 'devise'
+
 # Schedule cron jobs
 gem 'whenever', require: false
 
