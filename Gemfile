@@ -26,8 +26,14 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Encoding and decoding of HMACSHA256 tokens
+gem 'jwt'
+
 # Text progress bar for terminal
 gem 'progressbar'
+
+# A simple, standardized way to build and use Service Objects (aka Commands) in Ruby
+gem 'simple_command'
 
 # SOAP client for banking API
 gem 'savon'

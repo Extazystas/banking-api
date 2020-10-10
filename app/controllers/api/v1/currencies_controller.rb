@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CurrenciesController < ApplicationController
+    class CurrenciesController < ::Api::BaseController
       def index
         requested_day = params[:day]
 
