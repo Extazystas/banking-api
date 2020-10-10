@@ -1,24 +1,37 @@
-# README
+## This is Server side API. Part of Test assignment for fetching banking data (daily currencies) from NBRB.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- `Device` used for user managment and **JWT authentication is used for API authentication**.
+- API has POST `/api/authenticate` endpoint for JWT authentication.
+- API has GET `/api/v1/currencies.json` endpoint available after authentication.
+It takes `day` param if you want to fetch currencies for a specific day.
+By default it will return all available in DB currencies. At some point pagination and caching should be added.
+- **Currency** is a list of daily currencies. Is has json `daily_rates` list and `valid_at` timestamp.
+Fetched daily by `cron job`.
+Also can be populated by running rake task `rake currencies:generate_for_a_month_before_today`.
 
-Things you may want to cover:
+- Units specs written with `Rspec`.
 
-* Ruby version
+- Banking info is fetched from official National Belarussian Bank website with `savon` SOAP client.
 
-* System dependencies
+- **Rubocop** is used for a good code style. Run example: `rubocop app/ spec/`
 
-* Configuration
+## Tech info:
+* Rails v 6.0.3 using webpack and bootstrap
+* Ruby version 2.6.3
+* Database PostgreSQL with json column types support, 10+ recommended.
 
-* Database creation
+## Setup
+```
+rails db:create db:migrate db:seed
+bin/bundle rails s
+```
+To execute rake task for `Currencies` populating for a previous month run:
+`bin/bundle exec rake currencies:generate_for_a_month_before_today`.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## API JWT authentication url:
+To receive JWT token make `POST /api/authenticate` with `email` and `password`
+for example:
+```
+curl -H "Content-Type: application/json" -X POST -d '{"email":"admin@mail.com","password":"password123"}' http://localhost:3000/api/authenticate
+=> {"auth_token":"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE1OTI3Njk2ODR9.Q-pjqnOXHRdTLC88g6WS_s_vbocToib7zbtWMUviZ0o"}
+```
