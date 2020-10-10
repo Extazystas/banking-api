@@ -5,7 +5,7 @@
 - API has GET `/api/v1/currencies.json` endpoint available after authentication.
 It takes `day` param if you want to fetch currencies for a specific day.
 By default it will return all available in DB currencies. At some point pagination and caching should be added.
-- **Currency** is a list of daily currencies. Is has json `daily_rates` list and `valid_at` timestamp.
+- **Currency** is a list of daily currencies. Is has json `daily_rates` column and `valid_at` column.
 Fetched daily by `cron job`.
 Also can be populated by running rake task `rake currencies:generate_for_a_month_before_today`.
 
@@ -32,6 +32,6 @@ To execute rake task for `Currencies` populating for a previous month run:
 To receive JWT token make `POST /api/authenticate` with `email` and `password`
 for example:
 ```
-curl -H "Content-Type: application/json" -X POST -d '{"email":"admin@mail.com","password":"password123"}' http://localhost:3000/api/authenticate
+curl -H "Content-Type: application/json" -X POST -d '{"email":"user@mail.com","password":"password123"}' http://localhost:3000/api/authenticate
 => {"auth_token":"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE1OTI3Njk2ODR9.Q-pjqnOXHRdTLC88g6WS_s_vbocToib7zbtWMUviZ0o"}
 ```
