@@ -1,4 +1,10 @@
 ## This is Server side API. Part of Test assignment for fetching banking data (daily currencies) from NBRB.
+<p>
+<img src="https://devicons.github.io/devicon/devicon.git/icons/ruby/ruby-original-wordmark.svg" alt="ruby" width="40" height="40"/>
+<img src="https://devicons.github.io/devicon/devicon.git/icons/rails/rails-original-wordmark.svg" alt="rails" width="40" height="40"/>
+<img src="https://devicons.github.io/devicon/devicon.git/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/>
+<img src="https://devicons.github.io/devicon/devicon.git/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/>
+</p>
 ## Description
 - `Device` used for user managment and **JWT authentication is used for API authentication**.
 - API has POST `/api/authenticate` endpoint for JWT authentication.
