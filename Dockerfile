@@ -30,5 +30,6 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle check || bundle install
+RUN bundle exec rails db:create db:migrate db:seed
 COPY . ./
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
