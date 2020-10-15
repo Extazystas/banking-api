@@ -3,15 +3,25 @@ module Api
     class CurrenciesController < ::Api::BaseController
       def index
         requested_day = params[:day]
+        @datetime     = requested_day.present? ? Time.parse(requested_day) : Time.now
+        currency      = fetch_currency || create_currency
 
-        currencies =
-          if requested_day.present?
-            Array(Currency.where(valid_at: Time.parse(requested_day).to_date))
-          else
-            Currency.all
-          end
+        if currency.present?
+          render json: currency, each_serializer: Api::V1::CurrencySerializer, status: :ok
+        else
+          render json: nil
+        end
+      end
 
-        render json: currencies, each_serializer: Api::V1::CurrencySerializer, status: :ok
+      private
+
+      def fetch_currency
+        Currency.find_by(valid_at: @datetime.to_date)
+      end
+
+      def create_currency
+        currency = Currency.create(valid_at: @datetime, daily_rates: Nbrb::Api.daily_rates(@datetime))
+        currency.valid? ? currency : nil
       end
     end
   end

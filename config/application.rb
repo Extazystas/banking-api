@@ -37,5 +37,8 @@ module BankingApi
     config.active_record.schema_format = :sql
 
     config.eager_load_paths += %W(#{config.root}/app/**/*.rb #{config.root}/lib)
+
+    config.active_record.default_timezone = :local
+    config.time_zone = 'Europe/Minsk'
   end
 end

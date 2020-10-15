@@ -4,11 +4,15 @@ RSpec.describe Api::V1::CurrenciesController, type: :request do
   let(:user)          { create(:user) }
   let(:requested_day) { Time.parse('2020-10-10') }
   let!(:currency) do
-    create(:currency, valid_at: Time.now.to_date, daily_rates: { 'USD' => { value: 3.0 } })
+    create(:currency, valid_at: requested_day, daily_rates: { 'USD' => { value: 3.0 } })
   end
 
   before { travel_to requested_day }
   after  { travel_back }
+
+  before(:each) do
+    allow(Nbrb::Api).to receive(:daily_rates).and_return([])
+  end
 
   describe 'GET /index' do
     before { get api_v1_currencies_url, params: params, headers: headers }
