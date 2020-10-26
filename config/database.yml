@@ -7,6 +7,10 @@ development:
   <<: *default
   database: banking_api_development
 
+staging:
+  <<: *default
+  database: banking_api_staging
+
 test:
   <<: *default
   database: banking_api_test
